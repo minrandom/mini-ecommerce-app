@@ -28,7 +28,7 @@ flutter run
 
 1. **Clone the project**
 ```bash
-git clone <repo_url>
+git clone https://github.com/minrandom/mini-ecommerce-app.git
 cd mini-ecommerce-app
 flutter pub get
 ```
