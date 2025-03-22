@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../widgets/cart_badge_icon.dart';
 import '../controllers/product_controller.dart';
 import '../routes/app_pages.dart';
+import '../widgets/home_button.dart';
+import '../widgets/logout_button.dart';
 
 class ProductListPage extends StatelessWidget {
   final productController = Get.put(ProductController());
@@ -12,12 +15,9 @@ class ProductListPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Product List"),
         actions: [
-          IconButton(
-            icon: const Icon(Icons.shopping_cart),
-            onPressed: () {
-              Get.toNamed('/cart');
-            },
-          ),
+          HomeButton(),
+          CartBadgeIcon(),
+          LogoutButton()
         ],
       ),
       body: Obx(() {
@@ -76,7 +76,7 @@ class ProductListPage extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 8.0),
                       child: Text(
-                        "\$${product.price.toStringAsFixed(2)}",
+                        "Rp. ${product.price.toStringAsFixed(2)}",
                         style: const TextStyle(
                           color: Colors.green,
                           fontWeight: FontWeight.w600,

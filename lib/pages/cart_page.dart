@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controllers/cart_controller.dart';
+import '../widgets/logout_button.dart';
+import '../widgets/home_button.dart';
+import '../widgets/cart_badge_icon.dart';
+
 
 class CartPage extends StatelessWidget {
   final cartController = Get.put(CartController());
@@ -12,6 +16,11 @@ class CartPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Your Cart"),
+        actions: [
+          HomeButton(),
+          CartBadgeIcon(),
+          LogoutButton()
+        ],
       ),
       body: Obx(() {
         if (cartController.isLoading.value) {
@@ -51,13 +60,13 @@ class CartPage extends StatelessWidget {
                         ),
                         subtitle: Text("Qty: ${item.quantity}"),
                         trailing: SizedBox(
-                          width: 120,
+                          width: 150,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Text(
-                                "\$${(item.product.price * item.quantity).toStringAsFixed(2)}",
+                                "Rp. ${(item.product.price * item.quantity).toStringAsFixed(2)}",
                                 style: const TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.bold,
@@ -90,7 +99,7 @@ class CartPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       const Text("Total:", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                      Text("\$${cartController.totalAmount.toStringAsFixed(2)}", style: const TextStyle(fontSize: 18)),
+                      Text("Rp. ${cartController.totalAmount.toStringAsFixed(2)}", style: const TextStyle(fontSize: 18)),
                     ],
                   ),
                   const SizedBox(height: 10),

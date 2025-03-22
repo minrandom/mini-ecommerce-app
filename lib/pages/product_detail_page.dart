@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../widgets/home_button.dart';
+import '../widgets/logout_button.dart';
 import '../controllers/cart_controller.dart';
 import '../models/product_model.dart';
+import '../widgets/cart_badge_icon.dart';
+import '../widgets/bottom_nav_bar.dart';
 
 class ProductDetailPage extends StatelessWidget {
   final cartController = Get.put(CartController());
@@ -14,12 +18,9 @@ class ProductDetailPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(product.name),
         actions: [
-          IconButton(
-            icon: const Icon(Icons.shopping_cart),
-            onPressed: () {
-              Get.toNamed('/cart');
-            },
-          ),
+          HomeButton(),
+          CartBadgeIcon(),
+          LogoutButton(),
         ],
       ),
       body: Padding(
@@ -55,7 +56,7 @@ class ProductDetailPage extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             Text(
-              "\$${product.price.toStringAsFixed(2)}",
+              "Rp. ${product.price.toStringAsFixed(2)}",
               style: const TextStyle(
                 color: Colors.green,
                 fontSize: 18,
@@ -80,6 +81,7 @@ class ProductDetailPage extends StatelessWidget {
           ],
         ),
       ),
+      bottomNavigationBar: const BottomNavBar(),
     );
   }
 }

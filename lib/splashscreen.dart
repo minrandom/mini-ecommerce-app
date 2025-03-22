@@ -2,14 +2,23 @@ import 'dart:async';
 //import 'dart:ui_web';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import 'routes/app_pages.dart';
 import 'package:lottie/lottie.dart';
 
 class SplashScreen extends StatelessWidget {
-  const SplashScreen({Key? key}) : super(key: key);
+
+  final box = GetStorage();
+
   @override
   Widget build(BuildContext context) {
-    Timer(Duration(seconds: 3), () {
-      Get.toNamed("/home");
+    Future.delayed(const Duration(seconds: 2), () {
+      final token = box.read('token');
+      if (token == null) {
+        Get.offAllNamed('/login'); // go to login page
+      } else {
+        Get.offAllNamed('/home'); // go to product list page
+      }
 
     });
 
